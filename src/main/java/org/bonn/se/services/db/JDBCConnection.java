@@ -14,6 +14,7 @@ public class JDBCConnection {
     private final String password = "jvetmi2s";
     private final String URL = "jdbc:postgresql://dumbo.inf.h-brs.de/jvetmi2s";
     private String Test = "Anton hat einen big PP";
+    private String Test2 = "Henry sagt da aber was anderes";
     private Connection conn;
 
     private JDBCConnection() throws DatabaseException {
