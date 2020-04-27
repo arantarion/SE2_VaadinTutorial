@@ -59,7 +59,7 @@ public class LoginView extends VerticalLayout implements View {
                 passwd.setValue("");
 
             } catch (DatabaseException ex) {
-                Notification.show("DB-Fehler" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
+                Notification.show("DB-Fehler", ex.getReason(), Notification.Type.ERROR_MESSAGE);
                 userLogin.setValue("");
                 passwd.setValue("");
             }
