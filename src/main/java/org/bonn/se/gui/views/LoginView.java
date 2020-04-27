@@ -58,8 +58,10 @@ public class LoginView extends VerticalLayout implements View {
                 Notification.show("Dies ist keine gültige Kombination", Notification.Type.ERROR_MESSAGE);
                 passwd.setValue("");
 
-            } catch (DatabaseException | SQLException databaseException) {
-                databaseException.printStackTrace();
+            } catch (DatabaseException ex) {
+                Notification.show("DB-Fehler" + ex.getReason(), Notification.Type.ERROR_MESSAGE);
+                userLogin.setValue("");
+                passwd.setValue("");
             }
 
         });

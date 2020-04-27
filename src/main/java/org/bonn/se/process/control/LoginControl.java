@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class LoginControl {
 
-    public static void checkAuthentication(String user, String pw) throws NoSuchUserOrPasswordException, DatabaseException, SQLException {
+    public static void checkAuthentication(String user, String pw) throws NoSuchUserOrPasswordException, DatabaseException {
 
         ResultSet set = null;
 
@@ -28,8 +28,9 @@ public class LoginControl {
                     "WHERE realm.user.login = \'" + user + "\'" +
                     "AND realm.user.password = \'" + pw + "\'");
 
-        } catch (SQLException | DatabaseException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DatabaseException("Fehler im SQL Befehl");
         }
 
         User userDTO = null;

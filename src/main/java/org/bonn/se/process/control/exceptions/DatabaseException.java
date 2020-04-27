@@ -8,8 +8,8 @@ public class DatabaseException extends Exception {
         super("There was an error with the database!");
     }
 
-    public DatabaseException(String message) {
-        super(message);
+    public DatabaseException(String reason) {
+        this.reason = reason;
     }
 
     public String getReason() {

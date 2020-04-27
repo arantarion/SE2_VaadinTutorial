@@ -74,8 +74,12 @@ public class JDBCConnection {
 
     }
 
-    public void closeConnection() throws SQLException {
-        this.conn.close();
+    public void closeConnection() {
+        try {
+            this.conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
