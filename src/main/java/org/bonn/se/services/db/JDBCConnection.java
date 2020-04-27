@@ -15,7 +15,7 @@ public class JDBCConnection {
     private final String URL = "jdbc:postgresql://dumbo.inf.h-brs.de/jvetmi2s";
     private String Test = "Anton hat einen big PP";
     private String Test2 = "Henry sagt da aber was anderes";
-    private String Test3 = "Du musst damit leider leben"
+    private String Test3 = "Du musst damit leider leben";
     private Connection conn;
 
     private JDBCConnection() throws DatabaseException {
