@@ -1,7 +1,8 @@
 package org.bonn.se.services.db;
 
-import org.bonn.se.process.controll.exceptions.DatabaseException;
+import org.bonn.se.process.control.exceptions.DatabaseException;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ public class JDBCConnection {
     private final String login = "jvetmi2s";
     private final String password = "jvetmi2s";
     private final String URL = "jdbc:postgresql://dumbo.inf.h-brs.de/jvetmi2s";
+
     private Connection conn;
 
     private JDBCConnection() throws DatabaseException {
@@ -30,6 +32,7 @@ public class JDBCConnection {
     }
 
     public void initConnection() throws DatabaseException {
+
         try {
             DriverManager.registerDriver(new org.postgresql.Driver());
         } catch (SQLException e) {
@@ -39,22 +42,23 @@ public class JDBCConnection {
         this.openConnection();
     }
 
-    public void openConnection() {
+    public void openConnection() throws DatabaseException {
 
         try {
 
             Properties probs = new Properties();
-            probs.setProperty("user", "jvetmi2s");
-            probs.setProperty("password", "jvetmi2s");
+            probs.setProperty("user", this.login);
+            probs.setProperty("password", this.password);
 
             this.conn = DriverManager.getConnection(this.URL, probs);
 
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DatabaseException("Fehler bei Zugriff auf die Datenbank. Ist eine sichere Verbindung vorhanden?");
         }
     }
 
-    public Statement getStatement() {
+    public Statement getStatement() throws DatabaseException {
 
         try {
 

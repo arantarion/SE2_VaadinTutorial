@@ -5,8 +5,8 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.*;
 import org.bonn.se.process.control.LoginControl;
-import org.bonn.se.process.controll.exceptions.DatabaseException;
-import org.bonn.se.process.controll.exceptions.NoSuchUserOrPasswordException;
+import org.bonn.se.process.control.exceptions.DatabaseException;
+import org.bonn.se.process.control.exceptions.NoSuchUserOrPasswordException;
 
 import java.sql.SQLException;
 
