@@ -1,8 +1,13 @@
 package org.bonn.se.process.control;
 
+import com.vaadin.server.VaadinSession;
+import com.vaadin.ui.UI;
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.controll.exceptions.DatabaseException;
 import org.bonn.se.process.controll.exceptions.NoSuchUserOrPasswordException;
 import org.bonn.se.services.db.JDBCConnection;
+import org.bonn.se.services.util.Roles;
+import org.bonn.se.services.util.Views;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,13 +17,13 @@ import java.util.logging.Logger;
 
 public class LoginControl {
 
-    public static void checkAuthentication(String user, String pw) throws NoSuchUserOrPasswordException {
+    public static void checkAuthentication(String user, String pw) throws NoSuchUserOrPasswordException, DatabaseException, SQLException {
 
         ResultSet set = null;
 
         try {
             Statement state = JDBCConnection.getInstance().getStatement();
-            set =  state.executeQuery("SELECT * " +
+            set = state.executeQuery("SELECT * " +
                     "FROM realm.user " +
                     "WHERE realm.user.login = \'" + user + "\'" +
                     "AND realm.user.password = \'" + pw + "\'");
@@ -27,7 +32,28 @@ public class LoginControl {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        User userDTO = null;
 
+        try {
+            if (set.next()) {
+
+                userDTO = new User();
+                userDTO.setLogin(set.getString(1));
+                userDTO.setVorname(set.getString(3));
+
+            } else {
+                throw new NoSuchUserOrPasswordException();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            JDBCConnection.getInstance().closeConnection();
+        }
+
+        VaadinSession session = UI.getCurrent().getSession();
+        session.setAttribute(Roles.CURRENT_USER, userDTO);
+
+        UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 
     }
 }
