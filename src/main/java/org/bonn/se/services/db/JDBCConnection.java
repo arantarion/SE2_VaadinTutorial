@@ -2,7 +2,10 @@ package org.bonn.se.services.db;
 
 import org.bonn.se.process.controll.exceptions.DatabaseException;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,12 +41,14 @@ public class JDBCConnection {
 
     public void openConnection() {
 
-        Properties probs = new Properties();
-        probs.setProperty("user", "jvetmi2s");
-        probs.setProperty("password", "jvetmi2s");
-
         try {
+
+            Properties probs = new Properties();
+            probs.setProperty("user", "jvetmi2s");
+            probs.setProperty("password", "jvetmi2s");
+
             this.conn = DriverManager.getConnection(this.URL, probs);
+
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
