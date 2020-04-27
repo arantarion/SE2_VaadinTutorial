@@ -5,7 +5,10 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.*;
 import org.bonn.se.process.control.LoginControl;
+import org.bonn.se.process.controll.exceptions.DatabaseException;
 import org.bonn.se.process.controll.exceptions.NoSuchUserOrPasswordException;
+
+import java.sql.SQLException;
 
 public class LoginView extends VerticalLayout implements View {
 
@@ -55,6 +58,8 @@ public class LoginView extends VerticalLayout implements View {
                 Notification.show("Dies ist keine gültige Kombination", Notification.Type.ERROR_MESSAGE);
                 passwd.setValue("");
 
+            } catch (DatabaseException | SQLException databaseException) {
+                databaseException.printStackTrace();
             }
 
         });

@@ -6,7 +6,9 @@ import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.bonn.se.model.objects.dto.Hotel;
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
+import org.bonn.se.services.util.Roles;
 
 import java.util.List;
 
@@ -24,11 +26,12 @@ public class MainView extends VerticalLayout implements View {
         //final VerticalLayout layout = new VerticalLayout(); kann hier rausgenommen werden \o/
         final HorizontalLayout horizon = new HorizontalLayout();
 
-        final Label label = new Label("Gebe einen Ort ein:");
+        User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+
+        final Label label = new Label(user.getVorname() + ", gebe einen Ort ein:");
         Button button = new Button("Suche", FontAwesome.SEARCH);
         Button buchen = new Button("Buchen", FontAwesome.BOOK);
         final TextField textinput = new TextField();
-
 
         //Wenn die suche direkt aus dem Textfeld heraus kommen soll
         //textinput.addValueChangeListener(e -> updateList());
