@@ -42,7 +42,7 @@ public class MyUI extends UI {
         UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
     }
 
-    public MyUI getMyUI(){
+    public MyUI getMyUI() {
         return (MyUI) UI.getCurrent();
     }
 

@@ -11,7 +11,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class JDBCConnection {
+public class JDBCConnection implements JDBCConnectionInterface {
 
     private static JDBCConnection connection = null;
     private final String login = "jvetmi2s";
