@@ -1,5 +1,6 @@
 package org.bonn.se.gui.ui;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -16,7 +17,7 @@ import javax.servlet.annotation.WebServlet;
 
 @Theme("mytheme")
 @Title("My First Web App")
-//@PreserveOnRefresh
+@PreserveOnRefresh
 public class MyUI extends UI {
 
     @Override
