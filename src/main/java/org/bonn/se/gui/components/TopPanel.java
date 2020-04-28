@@ -5,6 +5,7 @@ import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
 import org.bonn.se.services.util.Roles;
@@ -22,7 +23,8 @@ public class TopPanel extends HorizontalLayout {
         this.setComponentAlignment(headLabel, Alignment.TOP_LEFT);
 
         HorizontalLayout horLayout = new HorizontalLayout();
-        User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+        //User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+        User user = ((MyUI) UI.getCurrent()).getUser();
 
         String vorname = null;
         if (user != null) {

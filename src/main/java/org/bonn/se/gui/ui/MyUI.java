@@ -10,6 +10,7 @@ import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.UI;
 import org.bonn.se.gui.views.LoginView;
 import org.bonn.se.gui.views.MainView;
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.services.util.Views;
 
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +20,16 @@ import javax.servlet.annotation.WebServlet;
 @Title("My First Web App")
 @PreserveOnRefresh
 public class MyUI extends UI {
+
+    private User user = null;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     @Override
     protected void init(VaadinRequest vaadinRequest) {
@@ -31,6 +42,9 @@ public class MyUI extends UI {
         UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
     }
 
+    public MyUI getMyUI(){
+        return (MyUI) UI.getCurrent();
+    }
 
     @WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
     @VaadinServletConfiguration(ui = MyUI.class, productionMode = false)

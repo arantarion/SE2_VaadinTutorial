@@ -3,14 +3,17 @@ package org.bonn.se.gui.views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.bonn.se.gui.components.TopPanel;
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
 import org.bonn.se.services.util.Roles;
+import org.bonn.se.services.util.Views;
 
 import java.util.List;
 
@@ -21,6 +24,15 @@ public class MainView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+
+        //User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+        User user = ((MyUI) UI.getCurrent()).getUser();
+
+        //direkter Zugriff vermeiden
+        if (user == null){
+            UI.getCurrent().getNavigator().navigateTo(Views.LOGIN);
+        }
+
         this.setUp();
     }
 
@@ -32,7 +44,8 @@ public class MainView extends VerticalLayout implements View {
         //final VerticalLayout layout = new VerticalLayout(); kann hier rausgenommen werden \o/
         final HorizontalLayout horizon = new HorizontalLayout();
 
-        User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+        //User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
+        User user = ((MyUI) UI.getCurrent()).getUser();
 
         String vorname = null;
         if (user != null) {

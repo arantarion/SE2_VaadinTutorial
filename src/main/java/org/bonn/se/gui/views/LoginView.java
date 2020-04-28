@@ -3,10 +3,15 @@ package org.bonn.se.gui.views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.*;
+import org.bonn.se.gui.ui.MyUI;
+import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.process.control.exceptions.NoSuchUserOrPasswordException;
+import org.bonn.se.services.util.Roles;
+import org.bonn.se.services.util.Views;
 
 import java.sql.SQLException;
 
@@ -14,6 +19,16 @@ public class LoginView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
+
+        //User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+
+        User user = ((MyUI) UI.getCurrent()).getUser();
+
+        //direkte umleitung
+        if (user != null){
+            UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
+        }
+
         this.setUp();
     }
 

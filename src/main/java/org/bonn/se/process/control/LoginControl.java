@@ -2,6 +2,7 @@ package org.bonn.se.process.control;
 
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
+import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.process.control.exceptions.NoSuchUserOrPasswordException;
@@ -51,8 +52,10 @@ public class LoginControl {
             JDBCConnection.getInstance().closeConnection();
         }
 
-        VaadinSession session = UI.getCurrent().getSession();
-        session.setAttribute(Roles.CURRENT_USER, userDTO);
+        //VaadinSession session = UI.getCurrent().getSession();
+        //session.setAttribute(Roles.CURRENT_USER, userDTO);
+
+        ((MyUI) UI.getCurrent()).setUser(userDTO);
 
         UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 
@@ -60,7 +63,7 @@ public class LoginControl {
 
     public static void logoutUser() {
         UI.getCurrent().getPage().setLocation("");
-        UI.getCurrent().getSession().close();
+        //UI.getCurrent().getSession().close();
     }
 
 }
