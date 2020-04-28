@@ -3,8 +3,10 @@ package org.bonn.se.gui.views;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
+import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
+import org.bonn.se.gui.components.TopPanel;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
@@ -23,6 +25,10 @@ public class MainView extends VerticalLayout implements View {
     }
 
     public void setUp(){
+
+        this.addComponent(new TopPanel());
+        this.addComponent( new Label("<hr />", ContentMode.HTML));
+
         //final VerticalLayout layout = new VerticalLayout(); kann hier rausgenommen werden \o/
         final HorizontalLayout horizon = new HorizontalLayout();
 
