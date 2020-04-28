@@ -34,7 +34,12 @@ public class MainView extends VerticalLayout implements View {
 
         User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
 
-        final Label label = new Label(user.getVorname() + ", gebe einen Ort ein:");
+        String vorname = null;
+        if (user != null) {
+            vorname = user.getVorname();
+        }
+
+        final Label label = new Label(vorname + ", gebe einen Ort ein:");
         Button button = new Button("Suche", FontAwesome.SEARCH);
         Button buchen = new Button("Buchen", FontAwesome.BOOK);
         final TextField textinput = new TextField();

@@ -24,7 +24,12 @@ public class TopPanel extends HorizontalLayout {
         HorizontalLayout horLayout = new HorizontalLayout();
         User user = (User) UI.getCurrent().getSession().getAttribute(Roles.CURRENT_USER);
 
-        Label logLabel = new Label("Welcome: " + user.getVorname() + "!");
+        String vorname = null;
+        if (user != null) {
+            vorname = user.getVorname();
+        }
+
+        Label logLabel = new Label("Welcome: " + vorname + "!");
         logLabel.setSizeUndefined();
 
         horLayout.addComponent(logLabel);
