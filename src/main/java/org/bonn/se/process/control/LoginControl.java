@@ -1,13 +1,11 @@
 package org.bonn.se.process.control;
 
-import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.process.control.exceptions.NoSuchUserOrPasswordException;
 import org.bonn.se.services.db.JDBCConnection;
-import org.bonn.se.services.util.Roles;
 import org.bonn.se.services.util.Views;
 
 import java.sql.ResultSet;
@@ -62,6 +60,7 @@ public class LoginControl {
     }
 
     public static void logoutUser() {
+        UI.getCurrent().close();
         UI.getCurrent().getPage().setLocation("");
         //UI.getCurrent().getSession().close();
     }
