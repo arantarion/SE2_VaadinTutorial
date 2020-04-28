@@ -6,6 +6,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import org.bonn.se.model.objects.dto.User;
+import org.bonn.se.process.control.LoginControl;
 import org.bonn.se.services.util.Roles;
 
 
@@ -14,7 +15,7 @@ public class TopPanel extends HorizontalLayout {
     public TopPanel() {
         this.setSizeFull();
 
-        Label headLabel = new Label("Mein Hotel - <i> das Reservierungssystem</i>", ContentMode.HTML);
+        Label headLabel = new Label("<h2>Mein Hotel - <i> das Reservierungssystem</i></h2>", ContentMode.HTML);
         headLabel.setSizeUndefined();
 
         this.addComponent(headLabel);
@@ -32,8 +33,18 @@ public class TopPanel extends HorizontalLayout {
         MenuBar bar = new MenuBar();
         MenuBar.MenuItem item1 = bar.addItem("Menu", null);
 
-        item1.addItem("Logout", FontAwesome.SIGN_OUT, null);
-        item1.addItem("Cancel", FontAwesome.UNLINK, null);
+        item1.addItem("Logout", FontAwesome.SIGN_OUT, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem menuItem) {
+                LoginControl.logoutUser();
+            }
+        });
+        item1.addItem("Cancel", FontAwesome.UNLINK, new MenuBar.Command() {
+            @Override
+            public void menuSelected(MenuBar.MenuItem menuItem) {
+
+            }
+        });
 
         horLayout.addComponent(bar);
         this.addComponent(horLayout);

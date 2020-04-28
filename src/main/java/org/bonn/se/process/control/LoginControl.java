@@ -57,4 +57,10 @@ public class LoginControl {
         UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
 
     }
+
+    public static void logoutUser() {
+        UI.getCurrent().getPage().setLocation("");
+        UI.getCurrent().getSession().close();
+    }
+
 }
