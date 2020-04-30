@@ -39,7 +39,7 @@ public class RoleDAO {
         ResultSet rs = null;
 
         try {
-            rs = statement.executeQuery("SELECT * FROM realm.user_to_role WHERE realm.user_to_role.login = \'" + user.getLogin() + "\' ");
+            rs = statement.executeQuery("SELECT * FROM realm.user_to_rolle WHERE realm.user_to_rolle.login = \'" + user.getLogin() + "\' ");
         } catch (SQLException ex) {
             Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
         }

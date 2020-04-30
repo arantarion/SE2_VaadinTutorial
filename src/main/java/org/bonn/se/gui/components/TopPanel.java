@@ -51,7 +51,7 @@ public class TopPanel extends HorizontalLayout {
             item1.addItem("Cancel", FontAwesome.UNLINK, new MenuBar.Command() {
                 @Override
                 public void menuSelected(MenuBar.MenuItem menuItem) {
-
+                    //TODO
                 }
             });
         }
