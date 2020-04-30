@@ -3,10 +3,7 @@ package org.bonn.se.services.db;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 
 import javax.xml.crypto.Data;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,6 +69,20 @@ public class JDBCConnection implements JDBCConnectionInterface {
             return null;
         }
 
+    }
+
+    public PreparedStatement getPreparedStatement(String sql) throws DatabaseException {
+        try {
+
+            if (this.conn.isClosed()) {
+                this.openConnection();
+            }
+
+            return this.conn.prepareStatement(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(JDBCConnection.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
     public void closeConnection() {

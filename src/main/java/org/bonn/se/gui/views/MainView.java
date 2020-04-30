@@ -9,12 +9,14 @@ import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.bonn.se.gui.components.TopPanel;
 import org.bonn.se.gui.ui.MyUI;
+import org.bonn.se.gui.windows.BookingWindow;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.HotelSearch;
 import org.bonn.se.services.util.Roles;
 import org.bonn.se.services.util.Views;
 
+import java.awt.print.Book;
 import java.util.List;
 
 public class MainView extends VerticalLayout implements View {
@@ -100,7 +102,9 @@ public class MainView extends VerticalLayout implements View {
         });
 
         buchen.addClickListener(e -> {
-            Notification.show(null, "Auswahl: " + this.selected.toString(), Notification.Type.WARNING_MESSAGE);
+            //Notification.show(null, "Auswahl: " + this.selected.toString(), Notification.Type.WARNING_MESSAGE);
+            BookingWindow win = new BookingWindow(this.selected);
+            UI.getCurrent().addWindow(win);
         });
 
         addComponent(grid);
