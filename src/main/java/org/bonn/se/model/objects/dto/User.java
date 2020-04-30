@@ -1,8 +1,13 @@
 package org.bonn.se.model.objects.dto;
 
+import org.bonn.se.model.DAO.RoleDAO;
+
+import java.util.List;
+
 public class User {
     private String vorname = null;
     private String login = null;
+    private List<Role> roles = null;
 
     public String getVorname() {
         return vorname;
@@ -19,4 +24,23 @@ public class User {
     public void setLogin(String login) {
         this.login = login;
     }
+
+    public boolean hasRole(String role) {
+
+        if (this.roles == null) {
+            getRoles();
+        }
+
+        for (Role r: roles){
+            if(r.getBezeichnung().equals(role)) return true;
+        }
+        return false;
+    }
+
+    private void getRoles() {
+
+        this.roles = RoleDAO.getInstance().getRolesForUser(this);
+
+    }
+
 }
