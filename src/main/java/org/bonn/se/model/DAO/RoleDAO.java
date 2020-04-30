@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class RoleDAO {
+public class RoleDAO extends AbstractDAO {
 
     public static RoleDAO dao = null;
 
@@ -28,13 +28,7 @@ public class RoleDAO {
     }
 
     public List<Role> getRolesForUser(User user) {
-        Statement statement = null;
-
-        try {
-            statement = JDBCConnection.getInstance().getStatement();
-        } catch (DatabaseException e) {
-            return null;
-        }
+        Statement statement = this.getStatement();
 
         ResultSet rs = null;
 

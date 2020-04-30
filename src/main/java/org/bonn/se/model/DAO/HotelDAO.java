@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HotelDAO {
+public class HotelDAO extends AbstractDAO {
 
     public static HotelDAO dao = null;
 
@@ -28,13 +28,7 @@ public class HotelDAO {
 
     public List<Hotel> getHotelbyLocation(String ort) {
 
-        Statement statement = null;
-
-        try {
-            statement = JDBCConnection.getInstance().getStatement();
-        } catch (DatabaseException e) {
-            return null;
-        }
+        Statement statement = this.getStatement();
 
         ResultSet rs = null;
 

@@ -1,5 +1,6 @@
 package org.bonn.se.process.control;
 
+import org.bonn.se.model.DAO.HotelDAO;
 import org.bonn.se.model.objects.dto.Hotel;
 
 import java.util.ArrayList;
@@ -24,23 +25,9 @@ public class HotelSearch {
         return search;
     }
 
-    public List<Hotel> getHotelbyOrt(String ort) {
+    public List<Hotel> getHotelByOrt(String ort) {
 
-        ArrayList<Hotel> liste = new ArrayList<>();
-
-        if (ort.equals("Bonn")) {
-            liste.add(hotel1);
-            liste.add(hotel2);
-        }
-        if (ort.equals("Köln")) {
-            liste.add(hotel3);
-        }
-        if (ort.equals("")) {
-            liste.add(hotel1);
-            liste.add(hotel2);
-            liste.add(hotel3);
-        }
-        return liste;
+        return HotelDAO.getInstance().getHotelbyLocation(ort);
 
     }
 

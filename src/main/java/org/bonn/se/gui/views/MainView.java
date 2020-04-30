@@ -83,7 +83,7 @@ public class MainView extends VerticalLayout implements View {
 
         button.addClickListener(e -> {
             String ort = textinput.getValue();
-            List<Hotel> liste = HotelSearch.getInstance().getHotelbyOrt(ort);
+            List<Hotel> liste = HotelSearch.getInstance().getHotelByOrt(ort);
 
             if (ort.equals("")) {
                 Notification.show(null, "Bitte Ort eingeben!", Notification.Type.WARNING_MESSAGE);
