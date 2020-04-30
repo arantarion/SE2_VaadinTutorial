@@ -1,6 +1,7 @@
 package org.bonn.se.process.control;
 
 import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 import org.bonn.se.gui.ui.MyUI;
 import org.bonn.se.gui.windows.ConfirmationWindow;
 import org.bonn.se.model.DAO.BuchungDAO;
@@ -24,7 +25,7 @@ public class BookingProcess {
         return process;
     }
 
-    public void createBooking(BookingRequest request) throws DatabaseException {
+    public void createBooking(BookingRequest request, Window window) throws DatabaseException {
 
         User user = ((MyUI) UI.getCurrent()).getUser();
 
@@ -33,6 +34,7 @@ public class BookingProcess {
         boolean result = BuchungDAO.getInstance().addBooking(booking);
 
         if (result) {
+            window.close();
             UI.getCurrent().addWindow(new ConfirmationWindow("Buchung erfolgreich! ID: " + booking.getId()));
         } else {
             UI.getCurrent().addWindow(new ConfirmationWindow("Es ist ein Fehler aufgetreten!"));

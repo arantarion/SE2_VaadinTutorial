@@ -54,7 +54,7 @@ public class BookingWindow extends Window {
             request.setHotel(hotel);
 
             try {
-                BookingProcess.getInstance().createBooking(request);
+                BookingProcess.getInstance().createBooking(request, BookingWindow.this);
             } catch (DatabaseException databaseException) {
                 databaseException.printStackTrace();
             }
