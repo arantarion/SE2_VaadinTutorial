@@ -6,7 +6,7 @@ import org.bonn.se.services.db.JDBCConnection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-public class AbstractDAO<E> {
+public class AbstractDAO {
 
     protected Statement getStatement(){
         Statement statement = null;

@@ -2,7 +2,9 @@ package org.bonn.se.gui.windows;
 
 
 import com.vaadin.ui.*;
+import org.bonn.se.model.objects.dto.BookingRequest;
 import org.bonn.se.model.objects.dto.Hotel;
+import org.bonn.se.process.control.BookingProcess;
 
 import java.time.LocalDate;
 
@@ -43,6 +45,14 @@ public class BookingWindow extends Window {
 
         Button buche = new Button("Buchen");
         buche.addClickListener(e -> {
+            BookingRequest request = new BookingRequest();
+            request.setAbreise(dateAbreise.getValue());
+            request.setAbreise(dateAnreise.getValue());
+            request.setIBAN(iban.getValue());
+            request.setNumber(personNo.getValue());
+            request.setHotel(hotel);
+
+            BookingProcess.getInstance().createBooking(request);
 
         } );
 
