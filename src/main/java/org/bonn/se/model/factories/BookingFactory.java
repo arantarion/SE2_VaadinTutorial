@@ -4,6 +4,7 @@ import org.bonn.se.model.objects.Entity.Booking;
 import org.bonn.se.model.objects.dto.BookingRequest;
 import org.bonn.se.model.objects.dto.User;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class BookingFactory {
@@ -19,7 +20,7 @@ public class BookingFactory {
 
         book.setUser(user);
 
-        book.setDatumBuchung(new Date());
+        book.setDatumBuchung(LocalDate.now());
         return book;
 
     }

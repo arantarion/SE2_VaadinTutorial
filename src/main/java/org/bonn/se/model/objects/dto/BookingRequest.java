@@ -5,21 +5,21 @@ import java.time.LocalDate;
 
 public class BookingRequest {
 
-    private Date anreise = null;
+    private LocalDate anreise = null;
     private LocalDate abreise = null;
     private String IBAN = null;
     private int number;
     private Hotel hotel;
 
-    public Date getAnreise() {
+    public LocalDate getAnreise() {
         return anreise;
     }
 
-    public void setAnreise(Date anreise) {
+    public void setAnreise(LocalDate anreise) {
         this.anreise = anreise;
     }
 
-    public java.util.Date getAbreise() {
+    public LocalDate getAbreise() {
         return abreise;
     }
 

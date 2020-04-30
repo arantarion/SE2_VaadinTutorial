@@ -7,9 +7,12 @@ import org.bonn.se.gui.windows.ConfirmationWindow;
 import org.bonn.se.model.DAO.BuchungDAO;
 import org.bonn.se.model.factories.BookingFactory;
 import org.bonn.se.model.objects.Entity.Booking;
+import org.bonn.se.model.objects.dto.BookingDetail;
 import org.bonn.se.model.objects.dto.BookingRequest;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.exceptions.DatabaseException;
+
+import java.util.List;
 
 public class BookingProcess {
 
@@ -47,4 +50,10 @@ public class BookingProcess {
         UI.getCurrent().addWindow(new ConfirmationWindow("Die Reise wurde stoniert!"));
     }
 
+    public List<BookingDetail> getAllBookingsForUser() {
+
+        final User user = ((MyUI) UI.getCurrent()).getUser();
+        return BuchungDAO.getInstance().getAllBookingsForUser(user);
+
+    }
 }

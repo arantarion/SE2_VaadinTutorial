@@ -1,20 +1,16 @@
-package org.bonn.se.model.objects.Entity;
+package org.bonn.se.model.objects.dto;
 
-import org.bonn.se.model.objects.dto.Hotel;
-import org.bonn.se.model.objects.dto.User;
-
-import java.time.LocalDate;
 import java.util.Date;
 
-public class Booking {
+public class BookingDetail {
 
     private int id;
-    private LocalDate anreise;
-    private LocalDate abreise;
-    private LocalDate datumBuchung;
+    private Date anreise;
+    private Date abreise;
+    private Date datumBuchung;
     private String iban;
     private int number;
-    private Hotel hotel;
+    private String hotel;
     private User user;
 
     public int getId() {
@@ -25,27 +21,27 @@ public class Booking {
         this.id = id;
     }
 
-    public LocalDate getAnreise() {
+    public Date getAnreise() {
         return anreise;
     }
 
-    public void setAnreise(LocalDate anreise) {
+    public void setAnreise(Date anreise) {
         this.anreise = anreise;
     }
 
-    public LocalDate getAbreise() {
+    public Date getAbreise() {
         return abreise;
     }
 
-    public void setAbreise(LocalDate abreise) {
+    public void setAbreise(Date abreise) {
         this.abreise = abreise;
     }
 
-    public LocalDate getDatumBuchung() {
+    public Date getDatumBuchung() {
         return datumBuchung;
     }
 
-    public void setDatumBuchung(LocalDate datumBuchung) {
+    public void setDatumBuchung(Date datumBuchung) {
         this.datumBuchung = datumBuchung;
     }
 
@@ -65,11 +61,11 @@ public class Booking {
         this.number = number;
     }
 
-    public Hotel getHotel() {
+    public String getHotel() {
         return hotel;
     }
 
-    public void setHotel(Hotel hotel) {
+    public void setHotel(String hotel) {
         this.hotel = hotel;
     }
 

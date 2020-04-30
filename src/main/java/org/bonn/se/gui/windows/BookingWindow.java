@@ -8,7 +8,7 @@ import org.bonn.se.process.control.BookingProcess;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 
 import java.time.LocalDate;
-
+import java.util.Date;
 
 public class BookingWindow extends Window {
 
