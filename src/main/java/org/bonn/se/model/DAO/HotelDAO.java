@@ -1,8 +1,6 @@
 package org.bonn.se.model.DAO;
 
 import org.bonn.se.model.objects.dto.Hotel;
-import org.bonn.se.model.objects.dto.Role;
-import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.exceptions.DatabaseException;
 import org.bonn.se.services.db.JDBCConnection;
 
