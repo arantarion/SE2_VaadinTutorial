@@ -6,6 +6,7 @@ import com.vaadin.ui.*;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.MenuBar;
 import org.bonn.se.gui.ui.MyUI;
+import org.bonn.se.gui.windows.ListBookingWindow;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.LoginControl;
 import org.bonn.se.services.util.Roles;
@@ -51,7 +52,8 @@ public class TopPanel extends HorizontalLayout {
             item1.addItem("Cancel", FontAwesome.UNLINK, new MenuBar.Command() {
                 @Override
                 public void menuSelected(MenuBar.MenuItem menuItem) {
-                    //TODO
+                    ListBookingWindow window = new ListBookingWindow();
+                    UI.getCurrent().addWindow(window);
                 }
             });
         }
