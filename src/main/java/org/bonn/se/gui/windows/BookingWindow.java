@@ -5,6 +5,7 @@ import com.vaadin.ui.*;
 import org.bonn.se.model.objects.dto.BookingRequest;
 import org.bonn.se.model.objects.dto.Hotel;
 import org.bonn.se.process.control.BookingProcess;
+import org.bonn.se.process.control.exceptions.DatabaseException;
 
 import java.time.LocalDate;
 
@@ -52,7 +53,11 @@ public class BookingWindow extends Window {
             request.setNumber(personNo.getValue());
             request.setHotel(hotel);
 
-            BookingProcess.getInstance().createBooking(request);
+            try {
+                BookingProcess.getInstance().createBooking(request);
+            } catch (DatabaseException databaseException) {
+                databaseException.printStackTrace();
+            }
 
         } );
 
