@@ -4,6 +4,7 @@ import org.bonn.se.model.objects.Entity.Booking;
 import org.bonn.se.model.objects.dto.BookingDetail;
 import org.bonn.se.model.objects.dto.User;
 import org.bonn.se.process.control.exceptions.DatabaseException;
+import org.postgresql.util.PSQLException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,6 +40,9 @@ public class BuchungDAO extends AbstractDAO {
             java.sql.Date anreise = java.sql.Date.valueOf(booking.getAnreise());
             java.sql.Date abreise = java.sql.Date.valueOf(booking.getAbreise());
             java.sql.Date buchdatum = java.sql.Date.valueOf(booking.getDatumBuchung());
+            System.out.println(anreise);
+            System.out.println(abreise);
+            System.out.println(buchdatum);
 
             statement.setDate(1, anreise);
             statement.setDate(2, abreise);
@@ -49,7 +53,6 @@ public class BuchungDAO extends AbstractDAO {
             statement.setInt(7, booking.getHotel().getId());
 
             statement.executeUpdate();
-
             setBuchungsID(booking);
             return true;
         } catch (SQLException e) {
@@ -65,8 +68,8 @@ public class BuchungDAO extends AbstractDAO {
         ResultSet rs = null;
 
         try {
-            rs = statement.executeQuery("SELECT max(realm.booking.id) FROM realm.booking");
-        } catch (SQLException ex) {
+            rs = statement.executeQuery("SELECT max(realm.booking.ID) FROM realm.booking");
+        } catch (SQLException ex ) {
             Logger.getLogger(BuchungDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -79,8 +82,8 @@ public class BuchungDAO extends AbstractDAO {
             Logger.getLogger(BuchungDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        booking.setId(currVal);
-
+        //booking.setId(currVal);
+        booking.setId(666);
 
     }
 

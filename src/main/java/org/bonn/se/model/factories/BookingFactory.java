@@ -17,7 +17,6 @@ public class BookingFactory {
         book.setHotel(request.getHotel());
         book.setIban(request.getIBAN());
         book.setNumber(request.getNumber());
-
         book.setUser(user);
 
         book.setDatumBuchung(LocalDate.now());

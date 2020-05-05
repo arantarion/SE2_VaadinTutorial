@@ -48,7 +48,9 @@ public class BookingWindow extends Window {
         buche.addClickListener(e -> {
             BookingRequest request = new BookingRequest();
             request.setAbreise(dateAbreise.getValue());
-            request.setAbreise(dateAnreise.getValue());
+            System.out.println(dateAbreise.getValue());
+            request.setAnreise(dateAnreise.getValue());
+            System.out.println(dateAnreise.getValue());
             request.setIBAN(iban.getValue());
             request.setNumber(personNo.getValue());
             request.setHotel(hotel);
