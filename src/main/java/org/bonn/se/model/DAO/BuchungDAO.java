@@ -31,23 +31,28 @@ public class BuchungDAO extends AbstractDAO {
     }
 
     public boolean addBooking(Booking booking) throws DatabaseException {
-        String sql = "insert into realm.booking values (default, ?, ?, ?, ?, ?, ?, ?);";
+        String sql = "insert into realm.booking values (?, ?, ?, ?, ?, ?, ?, default);";
         PreparedStatement statement = this.getPreparedStatement(sql);
 
         try {
-            statement.setDate(1, new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(booking.getAnreise().toString()).getTime()));
-            statement.setDate(2, new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(booking.getAbreise().toString()).getTime()));
+
+            java.sql.Date anreise = java.sql.Date.valueOf(booking.getAnreise());
+            java.sql.Date abreise = java.sql.Date.valueOf(booking.getAbreise());
+            java.sql.Date buchdatum = java.sql.Date.valueOf(booking.getDatumBuchung());
+
+            statement.setDate(1, anreise);
+            statement.setDate(2, abreise);
             statement.setString(3, booking.getIban());
             statement.setInt(4, booking.getNumber());
             statement.setString(5, booking.getUser().getLogin());
-            statement.setDate(6, new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(booking.getDatumBuchung().toString()).getTime()));
+            statement.setDate(6, buchdatum);
             statement.setInt(7, booking.getHotel().getId());
 
             statement.executeUpdate();
 
             setBuchungsID(booking);
             return true;
-        } catch (SQLException | ParseException e) {
+        } catch (SQLException e) {
             Logger.getLogger(BuchungDAO.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }

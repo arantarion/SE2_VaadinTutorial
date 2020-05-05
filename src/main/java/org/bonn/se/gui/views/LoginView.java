@@ -1,5 +1,6 @@
 package org.bonn.se.gui.views;
 
+import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
@@ -53,7 +54,7 @@ public class LoginView extends VerticalLayout implements View {
         Button loginButton = new Button("Login", FontAwesome.SEND);
         layout.addComponent(loginButton);
         layout.setComponentAlignment(loginButton, Alignment.MIDDLE_CENTER);
-
+        loginButton.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         //Panel auf Feldgröße anpassen
         panel.setSizeUndefined();
 
